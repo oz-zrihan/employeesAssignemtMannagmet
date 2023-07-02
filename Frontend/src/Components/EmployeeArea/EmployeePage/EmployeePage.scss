@@ -1,0 +1,29 @@
+@import "../../../Assets/main-sass.scss";
+
+.EmployeePage {
+    padding: 1em;
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+	.user-card{
+        width: 20%;
+        text-align: left;
+        padding: 1.5em;
+        border-right: 1px solid $dark-blue;
+        height: 100%;
+        position: sticky;
+        top: 0;
+        >div{
+            margin-bottom: 1em;
+            border-bottom: 1px solid $dark-blue;
+            &:last-of-type{
+                border-bottom: none;
+            }
+        }
+    }
+    .feed-area{
+        width: 70%;
+    }
+
+}

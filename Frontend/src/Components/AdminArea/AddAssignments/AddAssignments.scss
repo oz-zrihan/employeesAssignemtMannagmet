@@ -1,0 +1,147 @@
+@import "../../../Assets/main-sass.scss";
+
+.AddAssignments {
+  margin-top: 3em;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+
+  .form-header {
+    background-color: $dark-blue;
+    width: 100%;
+    padding: 0.5em 0;
+  }
+
+  h3 {
+    color: $light-text;
+    font-weight: 600;
+  }
+
+  form {
+    width: 40em;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    border: 1px solid $dark-blue;
+    background-color: $main-bg;
+
+    label {
+      display: block;
+      font-size: $small-text;
+      margin-top: 1em;
+      color: $secondary-text;
+    }
+
+    input, select {
+      width: 90%;
+      height: 2.5em;
+      border: 1px solid $secondary-bg;
+      color: $secondary-text;
+      margin-top: 0.5em;
+      text-align: center;
+
+      &::placeholder {
+        color: $secondary-text;
+        font-size: $small-text;
+      }
+
+      &:focus {
+        outline: 1px solid $gold;
+      }
+    }
+
+    textArea {
+      width: 90%;
+      height: 5em;
+      border: 1px solid $secondary-bg;
+      color: $secondary-text;
+      margin-top: 0.5em;
+      text-align: center;
+      resize: none;
+
+      &:focus {
+        outline: 1px solid $gold;
+      }
+    }
+    ul{
+        text-align: left;
+        li{
+            list-style: none;
+        }
+        input[type="checkbox"]{
+            width: auto;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            border-radius: 50%;
+            border: 1px solid $secondary-text;
+            margin-right: 1em;
+            height: auto;
+            outline: none;
+            cursor: pointer;
+            &::before{
+                content: "";
+                display: block;
+                width: 10px;
+                height: 10px;
+                margin: 2px;
+                border-radius: 50%;
+            }
+            &:checked::before{
+                background-color: $gold;
+            }
+        }
+    }
+
+    .files-handler-btns {    
+        .upload {
+          height: 2.5em;
+          margin: 0.5em 0 0 0;
+          border-radius: 5px;
+          border: 1px solid $gold;
+          color: $secondary-text;
+        }
+    
+        input[type="file"]::-webkit-file-upload-button {
+          background-color: $gold;
+          color: #fff;
+          padding: 10px;
+          border: none;
+          font-weight: bold;
+          cursor: pointer;
+        }
+      }
+
+    button {
+      width: 90%;
+      height: 2.5em;
+      border: none;
+      background-color: $dark-blue;
+      color: $light-text;
+      margin: 1.5em 0;
+      &:hover {
+        background-color: $gold;
+      }
+    }
+  }
+
+  .form-body {
+    padding: 1em;
+  }
+
+  p {
+    display: block;
+    font-size: $small-text;
+    margin: 1em 0 0 0;
+  }
+
+  small {
+    display: block;
+    font-size: $small-text;
+    color: $gold;
+  }
+
+  
+}

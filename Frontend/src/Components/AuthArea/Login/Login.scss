@@ -1,0 +1,80 @@
+@import "../../../Assets/main-sass.scss";
+
+.Login {
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+}
+.Login .form-header {
+  background-color: $dark-blue;
+  width: 100%;
+  padding: 0.5em 0;
+}
+
+.Login h3 {
+  color: $light-text;
+  font-weight: 600;
+}
+
+.Login form {
+  width: 20em;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  border: 1px solid $dark-blue;
+  background-color: $main-bg;
+}
+
+.Login .form-body {
+  padding: 1em;
+}
+
+.Login form label {
+  display: block;
+  font-size: $small-text;
+  margin-top: 1em;
+  color: $secondary-text;
+}
+.Login p {
+  display: block;
+  font-size: $small-text;
+  margin: 1em 0 0 0;
+}
+
+.Login a {
+  color: $dark-blue;
+  cursor: pointer;
+}
+
+.Login p {
+  display: block;
+  font-size: $small-text;
+  margin: 1em 0 0 0;
+}
+.Login input {
+  width: 90%;
+  height: 2.5em;
+  border: 1px solid $secondary-bg;
+  color: $secondary-text;
+  margin-top: 0.5em;
+  text-align: center;
+}
+.Login input:focus {
+  outline: 1px solid $gold;
+}
+
+.Login button {
+  width: 90%;
+  height: 2.5em;
+  border: none;
+  background-color: $dark-blue;
+  color: $light-text;
+  margin-top: 1.5em;
+}
+.Login button:hover {
+  background-color: $gold;
+}

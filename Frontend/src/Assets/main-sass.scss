@@ -1,0 +1,102 @@
+// COLORS
+$gold: #d8ae6e;
+$dark-blue: #1f4c6b;
+$main-bg: #f8f8f8;
+$secondary-bg: #f3f3f3;
+$dark-bg: #f3f3f3;
+$main-text: #313131;
+$secondary-text: #989898;
+$light-text: #f1f1f1;
+$danger:#c61d1d;
+$send:#03540a;
+
+// Statue colors
+$waiting: #6e7879;
+$inProgress: #eea70c;
+$waitingForApproval: #0c566e;
+$backToRepairs: #b42f0e;
+$managerApproved: #0e6623;
+
+// Priority colors
+$low: #6e7879;
+$medium: #eea70c;
+$high: #b42f0e;
+
+// FONTS
+$headline: 2em;
+$big-text: 1.5em;
+$regular-text: 1em;
+$small-text: .8em;
+$extra-small-text: .5em;
+
+//button
+
+        .danger-btn{
+           height: 2.5em;
+           width: 8em;
+           color: $danger;
+           border: 1px solid $danger;
+           border-radius: 5px;
+           background-color: $main-bg;
+           cursor: pointer;
+           &:hover{
+            background-color: $danger;
+            color: $light-text;
+           }
+        }
+        .send-btn{
+           height: 2.5em;
+           width: 8em;
+           color: $send;
+           border: 1px solid $send;
+           border-radius: 5px;
+           background-color: $main-bg;
+           cursor: pointer;
+           &:hover{
+            background-color: $send;
+            color:$light-text;
+            a{
+               color:$light-text
+            }
+           }
+        }
+
+      
+
+        .gold-btn{
+           height: 2.5em;
+           width: 8em;
+           color: $gold;
+           border: 1px solid $gold;
+           border-radius: 5px;
+           background-color: $main-bg;;
+           cursor: pointer;
+           a{
+            color: $gold;
+           }
+           &:hover{
+            background-color: $gold;
+            color:$light-text;
+            a{
+               color:$light-text
+            }
+           }
+        }
+        .blue-btn{
+           height: 2.5em;
+           width: 8em;
+           color: $dark-blue;
+           border: 1px solid $dark-blue;
+           border-radius: 5px;
+           background-color: $main-bg;;
+           cursor: pointer;
+           a{
+            color: $dark-blue;
+           }
+           &:hover{
+            background-color: $dark-blue;
+            color:$light-text
+           }
+        }
+      
+

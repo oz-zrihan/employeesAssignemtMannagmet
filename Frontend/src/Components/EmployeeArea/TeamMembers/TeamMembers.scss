@@ -1,0 +1,15 @@
+@import "../../../Assets/main-sass.scss";
+
+.TeamMembers {
+    h3{
+        color: $gold;
+        margin-bottom: 0;
+    }
+    ul{
+        list-style: none;
+        padding: 0;
+        li{
+            margin-top: 0.5em;
+        }
+    }
+}

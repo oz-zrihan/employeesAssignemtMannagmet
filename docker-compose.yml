@@ -1,0 +1,117 @@
+
+# list of all services (containers)
+services:
+
+# ---------------------- vacations database container-----------------------------------------
+
+  # Vacations database
+  vacation-database-service:
+
+    # Database image name
+    image: oz1987/vacation-database-image:1.0
+
+    #build image from dockerfile location
+    build: ./Database
+
+    # container name
+    container_name: vacation-database-container
+
+    # ports:
+    ports: 
+      - 3306:3306
+
+    # Restart policy -> on crash what do we need to do
+    restart: unless-stopped
+
+    # Environment Variables used inside our database
+    environment:
+      - PORT=4000
+      - MYSQL_HOST=localhost # internally for the container
+      - MYSQL_DATABASE=vacation-database
+      - MYSQL_USER=Oz
+      - MYSQL_PASSWORD=Zrihan
+      - MYSQL_ROOT_PASSWORD=Zrihan #needed by mysql image
+
+   #volumes for persisting the data
+    volumes:
+      - vacation-db:/var/lib/mysql
+
+# ---------------------- vacation backend container-----------------------------------------
+      
+  # Backend service
+  vacation-backend-services:
+
+    # image name to create
+    image: oz1987/vacation-backend-image:1.0
+
+    # Build image  from following docker file location
+    build: ./backend
+
+    # give container name
+    container_name: vacation-backend-container
+
+    # port binding (host-port: container-port)
+    ports:
+      - 4000:4000
+
+    # Restart policy -> on crash what do we need to do
+    restart: unless-stopped
+
+    # Environment Variables
+    environment:
+      - PORT=4000
+      - MYSQL_HOST=vacation-database-service # Use the service name as the hostname
+      - MYSQL_DATABASE=vacation-database
+      - MYSQL_USER=Oz
+      - MYSQL_PASSWORD=Zrihan
+      
+    # host volumes for hot reloading
+    volumes:
+      - ./Backend:/app
+    
+    depends_on:
+      - vacation-database-service
+
+
+# ---------------------- vacation frontend container-----------------------------------------
+
+
+  # vacation frontend
+  vacation-frontend-service:
+
+    # frontend image
+    image: oz1987/vacation-frontend-image:1.0
+
+    #build image
+    build: ./Frontend
+
+    # container name
+    container_name: vacation-frontend-container
+
+    # port binding
+    ports:
+      - 3000:3000
+
+    # Restart policy -> on crash what do we need to do
+    restart: unless-stopped
+
+    # Host volume for hot reloading
+    volumes:
+      - ./Frontend:/app
+
+    depends_on:
+      - vacation-backend-services
+
+# -------------------------------------------------------\
+#List all Named volumes here:
+volumes:
+  vacation-db:
+
+
+# ===================================== terminal commands ==========================
+
+# run docker compose -> using terminal:
+# docker-compose up                (run docker)
+# docker-compose up -d             (run docker and detach terminal)
+# docker-compose up -d --build     (same and build image if even exist)
+# docker-compose down              (stop and delete container)

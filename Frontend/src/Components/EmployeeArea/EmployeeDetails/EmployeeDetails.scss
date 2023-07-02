@@ -1,0 +1,34 @@
+@import "../../../Assets/main-sass.scss";
+
+.EmployeeDetails {
+	.employee-info{
+        .personal-details{
+            h2{
+              display:flex;
+              gap:0.5em;
+              span{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: $dark-blue;
+              }
+            }
+            
+            p{
+              display:flex;
+              gap:1em;
+              align-items: center;
+              span{
+                font-size: 1.4em;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: $dark-blue;
+              }
+            }
+            
+           
+            
+        }
+    }
+}

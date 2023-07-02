@@ -1,0 +1,34 @@
+[{
+  "_id": {
+    "$oid": "64527b6409107bc306f8886a"
+  },
+  "firstName": "avi",
+  "lastName": "golab",
+  "age": 18,
+  "phonse": [
+    "054-7769987",
+    "054-6672323"
+  ]
+},{
+  "_id": {
+    "$oid": "64527b8509107bc306f8886c"
+  },
+  "firstName": "yael",
+  "lastName": "dayan",
+  "age": 19,
+  "phonse": [
+    "054-7433987",
+    "054-6665773"
+  ]
+},{
+  "_id": {
+    "$oid": "64527b9c09107bc306f8886e"
+  },
+  "firstName": "gilad",
+  "lastName": "yair",
+  "age": 18,
+  "phonse": [
+    "054-7769232",
+    "054-6342323"
+  ]
+}]
