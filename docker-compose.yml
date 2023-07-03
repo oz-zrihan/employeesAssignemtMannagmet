@@ -1,111 +1,51 @@
 
-# list of all services (containers)
+version: '3.9'
 services:
 
-# ---------------------- vacations database container-----------------------------------------
-
-  # Vacations database
-  vacation-database-service:
-
-    # Database image name
-    image: oz1987/vacation-database-image:1.0
-
-    #build image from dockerfile location
-    build: ./Database
-
-    # container name
-    container_name: vacation-database-container
-
-    # ports:
-    ports: 
-      - 3306:3306
-
-    # Restart policy -> on crash what do we need to do
+  # MongoDB service
+  mongodb:
+    image: mongo:latest
+    container_name: manageYourCompany-mongodb-container
+    ports:
+      - 27017:27017
     restart: unless-stopped
-
-    # Environment Variables used inside our database
-    environment:
-      - PORT=4000
-      - MYSQL_HOST=localhost # internally for the container
-      - MYSQL_DATABASE=vacation-database
-      - MYSQL_USER=Oz
-      - MYSQL_PASSWORD=Zrihan
-      - MYSQL_ROOT_PASSWORD=Zrihan #needed by mysql image
-
-   #volumes for persisting the data
     volumes:
-      - vacation-db:/var/lib/mysql
+      - manageYourCompany-mongodb-data:/data/db
 
-# ---------------------- vacation backend container-----------------------------------------
-      
   # Backend service
-  vacation-backend-services:
-
-    # image name to create
-    image: oz1987/vacation-backend-image:1.0
-
-    # Build image  from following docker file location
+  vacation-backend-service:
+    image: oz1987/manageYourCompany-backend-image:1.0
     build: ./backend
-
-    # give container name
-    container_name: vacation-backend-container
-
-    # port binding (host-port: container-port)
+    container_name: manageYourCompany-backend-container
     ports:
       - 4000:4000
-
-    # Restart policy -> on crash what do we need to do
     restart: unless-stopped
-
-    # Environment Variables
     environment:
       - PORT=4000
-      - MYSQL_HOST=vacation-database-service # Use the service name as the hostname
-      - MYSQL_DATABASE=vacation-database
-      - MYSQL_USER=Oz
-      - MYSQL_PASSWORD=Zrihan
-      
-    # host volumes for hot reloading
+      - MONGODB_HOST=mongodb
+      - MONGODB_DATABASE=manageYourCompany
+      - MONGODB_USERNAME=admin
+      - MONGODB_PASSWORD=password
     volumes:
-      - ./Backend:/app
-    
+      - ./backend:/app
     depends_on:
-      - vacation-database-service
+      - mongodb
 
-
-# ---------------------- vacation frontend container-----------------------------------------
-
-
-  # vacation frontend
+  # Frontend service
   vacation-frontend-service:
-
-    # frontend image
-    image: oz1987/vacation-frontend-image:1.0
-
-    #build image
-    build: ./Frontend
-
-    # container name
-    container_name: vacation-frontend-container
-
-    # port binding
+    image: oz1987/manageYourCompany-frontend-image:1.0
+    build: ./frontend
+    container_name: manageYourCompany-frontend-container
     ports:
       - 3000:3000
-
-    # Restart policy -> on crash what do we need to do
     restart: unless-stopped
-
-    # Host volume for hot reloading
     volumes:
-      - ./Frontend:/app
-
+      - ./frontend:/app
     depends_on:
-      - vacation-backend-services
+      - manageYourCompany-backend-service
 
-# -------------------------------------------------------\
-#List all Named volumes here:
 volumes:
-  vacation-db:
+  vacation-mongodb-data:
 
 
 # ===================================== terminal commands ==========================
