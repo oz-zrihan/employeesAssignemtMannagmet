@@ -20,14 +20,6 @@ class DevelopmentConfig extends AppConfig {
   // Server url:
   public serverUrl = `http://${this.host}:${this.port}`;
 
-  // MongoDB connection string:
-  public async getMongoConnection(): Promise<MongoClient> {
-    const client = new MongoClient(`mongodb://${this.host}`, {
-      useUnifiedTopology: true,
-    });
-    await client.connect();
-    return client;
-  }
 
   // Images url:
   public getImgUrl(imageFolder: string): string {
@@ -40,6 +32,10 @@ class DevelopmentConfig extends AppConfig {
     const filesUrl = this.serverUrl + '/api/files/' + filesFolder;
     return filesUrl;
   }
+
+    // MongoDB connection string:
+    public mongoConnection = `mongodb://localhost:27017/${this.database}`;
+
 }
 
 class ProductionConfig extends AppConfig {
@@ -60,14 +56,6 @@ class ProductionConfig extends AppConfig {
   // Server url:
   public serverUrl = `http://${this.host}:${this.port}`;
 
-  // MongoDB connection string:
-  public async getMongoConnection(): Promise<MongoClient> {
-    const client = new MongoClient(`mongodb://${this.host}`, {
-      useUnifiedTopology: true,
-    });
-    await client.connect();
-    return client;
-  }
 
   // Images url:
   public getImgUrl(imageFolder: string): string {
@@ -80,6 +68,9 @@ class ProductionConfig extends AppConfig {
     const filesUrl = this.serverUrl + '/api/files/' + filesFolder;
     return filesUrl;
   }
+    // MongoDB connection string:
+    public mongoConnection = `mongodb://localhost:27017/${this.database}`;
+
 }
 
 const appConfig =
