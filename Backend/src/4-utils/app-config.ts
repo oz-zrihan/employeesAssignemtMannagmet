@@ -1,3 +1,5 @@
+import { MongoClient } from 'mongodb';
+
 class AppConfig {}
 
 class DevelopmentConfig extends AppConfig {
@@ -10,22 +12,22 @@ class DevelopmentConfig extends AppConfig {
   public socketPort = 4001;
 
   // Database Host:
-  public host = process.env.MYSQL_HOST || "localhost";
-
-  // Database User
-  public user = process.env.MYSQL_USER || "root";
-
-  // Database Password:
-  public password = process.env.MYSQL_PASSWORD || "";
+  public host = process.env.MONGODB_HOST || 'localhost';
 
   // Database Name:
-  public database = process.env.MYSQL_DATABASE || "manageYourCompany";
+  public database = process.env.MONGODB_DATABASE || 'manageYourCompany';
 
   // Server url:
   public serverUrl = `http://${this.host}:${this.port}`;
 
   // MongoDB connection string:
-  public mongoConnection = `mongodb://localhost:27017/${this.database}`;
+  public async getMongoConnection(): Promise<MongoClient> {
+    const client = new MongoClient(`mongodb://${this.host}`, {
+      useUnifiedTopology: true,
+    });
+    await client.connect();
+    return client;
+  }
 
   // Images url:
   public getImgUrl(imageFolder: string): string {
@@ -35,7 +37,7 @@ class DevelopmentConfig extends AppConfig {
 
   // Files url:
   public getFileUrl(filesFolder: string): string {
-    const filesUrl = this.serverUrl + "/api/files/" + filesFolder;
+    const filesUrl = this.serverUrl + '/api/files/' + filesFolder;
     return filesUrl;
   }
 }
@@ -50,37 +52,38 @@ class ProductionConfig extends AppConfig {
   public socketPort = 4001;
 
   // Database Host:
-  public host = process.env.MYSQL_HOST || "localhost";
-
-  // Database User
-  public user = process.env.MYSQL_USER || "root";
-
-  // Database Password:
-  public password = process.env.MYSQL_PASSWORD || "";
+  public host = process.env.MONGODB_HOST || 'localhost';
 
   // Database Name:
-  public database = process.env.MYSQL_DATABASE || "vacation-database";
+  public database = process.env.MONGODB_DATABASE || 'manageYourCompany';
 
   // Server url:
   public serverUrl = `http://${this.host}:${this.port}`;
 
   // MongoDB connection string:
-   public mongoConnection = `mongodb://localhost:27017/${this.database}`;
+  public async getMongoConnection(): Promise<MongoClient> {
+    const client = new MongoClient(`mongodb://${this.host}`, {
+      useUnifiedTopology: true,
+    });
+    await client.connect();
+    return client;
+  }
 
   // Images url:
   public getImgUrl(imageFolder: string): string {
-    const imagesUrl = this.serverUrl + "/api/images/" + imageFolder;
+    const imagesUrl = this.serverUrl + '/api/images/' + imageFolder;
     return imagesUrl;
   }
+
   // Files url:
   public getFileUrl(filesFolder: string): string {
-    const filesUrl = this.serverUrl + "/api/files/" + filesFolder;
+    const filesUrl = this.serverUrl + '/api/files/' + filesFolder;
     return filesUrl;
   }
 }
 
 const appConfig =
-  process.env.NODE_ENV === "production"
+  process.env.NODE_ENV === 'production'
     ? new ProductionConfig()
     : new DevelopmentConfig();
 
