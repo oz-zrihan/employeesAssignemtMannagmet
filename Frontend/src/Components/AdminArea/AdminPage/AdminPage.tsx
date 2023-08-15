@@ -43,6 +43,7 @@ function AdminPage (): JSX.Element
 
     return (
         <div className="AdminPage">
+             <AuthMenu/>
             { admin &&
                 <>
                     <div className="buttons">
