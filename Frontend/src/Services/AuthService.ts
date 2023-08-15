@@ -11,13 +11,8 @@ class AuthService {
   // ====================== Register ======================
   public async register(user: EmployeeModel): Promise<void> {
     // Send user to backend to register:
-    const response = await axios.post<string>(appConfig.registerUrl, user);
+   await axios.post<string>(appConfig.registerUrl, user);
 
-    // Extract token:
-    const token = response.data;
-
-    // Save token to global state
-    authStore.dispatch({ type: AuthActionType.Register, payload: token });
   }
 
   // ====================== Login ======================
